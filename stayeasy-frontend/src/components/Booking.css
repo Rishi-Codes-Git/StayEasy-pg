@@ -1,0 +1,142 @@
+.booking-pageWrap {
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 30px;
+  color: white;
+  background: linear-gradient(151deg, rgba(21,24,28,1) 0%, rgba(6,37,62,1) 100%);
+  min-height: 100vh;
+}
+
+.booking-title {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.booking-title h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+.booking-title h2 {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 300;
+}
+
+.booking-card {
+  width: 300px;
+  height: 180px;
+  font-size: 16px;
+  color: white;
+  background: #10E5BC;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 2em;
+  position: relative;
+}
+
+.booking-cardfront {
+  padding: 1em;
+  position: relative;
+}
+
+.Debit {
+  position: absolute;
+  transform: rotate(-90deg);
+  right: 0.5em;
+  top: 2em;
+  font-size: 0.8em;
+}
+
+.chip {
+  position: absolute;
+  left: 1.5em;
+  top: 30%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: auto;
+
+  
+}
+
+.booking-card-section {
+  width: fit-content;
+  margin: 0.5em 0;
+}
+
+#account-number-display {
+  font-size: 1.2em;
+  padding: 30px;
+  margin-top: 50px;
+}
+
+#name-display {
+  position: absolute;
+  left: 1.5em;
+  bottom: 1em;
+}
+
+.booking-inputs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+}
+
+.booking-inputs label {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.booking-inputs input {
+  background: none;
+  border: 1px solid #ccc;
+  padding: 8px;
+  outline: none;
+  margin-bottom: 10px;
+  color: white;
+  font-size: 1rem;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.booking-inputs input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.booking-dateCCV {
+  display: flex;
+  gap: 10px;
+}
+
+.booking-dateCCV .date,
+.booking-dateCCV .CCV {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.booking-dateCCV input {
+  text-align: center;
+}
+
+.submit-btn {
+  align-self: flex-end;
+  padding: 10px 20px;
+  border: none;
+  color: white;
+  font-size: 1rem;
+  background-color: #10E5BC;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.submit-btn:disabled {
+  background-color: #6EC7B0;
+  cursor: not-allowed;
+}

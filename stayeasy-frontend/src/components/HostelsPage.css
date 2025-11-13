@@ -1,0 +1,179 @@
+/* Apply styles specific to HostelsPage */
+.hostels-page {
+  position: relative;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  color: #fff;
+  overflow: auto; /* Allow scrolling on the page */
+}
+
+/* Fixed full-screen background video */
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Ensure the video is behind the content */
+  opacity: 0.7; /* Optional: Adjust opacity if needed for better text readability */
+}
+
+/* Styling for the main content container */
+.content-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+  overflow: auto; /* Allow content to scroll */
+}
+
+.content-container h1 {
+  font-size: 2.5rem;
+  color: #000;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.search-bar {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
+  height: 50px;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 50px; /* Rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 20px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 50px; /* Round corners */
+  background-color: transparent; /* Make background transparent to match the parent */
+  color: #333;
+  outline: none;
+}
+
+.search-bar input::placeholder {
+  color: #150b0b;
+}
+
+.search-button {
+  background-color: black;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  margin-left: -40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.search-button i {
+  font-size: 20px;
+  color: white;
+}
+
+.search-button:hover {
+  background-color: #333;
+}
+
+/* Styling for the hostel list */
+.hostel-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+  overflow-y: auto; /* Ensure the hostel list can scroll if it exceeds the viewport height */
+  max-height: 100vh; /* Ensure the hostel list doesn't exceed the viewport height */
+}
+
+/* Styling for each hostel card */
+.hostel-card {
+  background: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  width: 300px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.hostel-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.hostel-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: opacity 0.3s;
+}
+
+.hostel-card:hover .hostel-image {
+  opacity: 0.8;
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+}
+
+.no-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  background: #e0e0e0;
+  color: #555;
+  font-size: 1rem;
+}
+
+.hostel-info {
+  padding: 15px;
+}
+
+.hostel-type {
+  font-size: 1.2rem;
+  margin: 0;
+  color: #333;
+}
+
+.hostel-price {
+  font-size: 1.5rem;
+  color: #ff5722;
+  margin: 5px 0;
+}
+
+.hostel-size,
+.hostel-address,
+.hostel-status {
+  margin: 5px 0;
+  color: #444;
+}

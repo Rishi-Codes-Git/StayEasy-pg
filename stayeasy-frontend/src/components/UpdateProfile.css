@@ -1,0 +1,72 @@
+/* Ensure styles apply only to the update-profile-page */
+.update-profile-page {
+  background-image: url('images/upnew.jpg'); /* Replace with your background image */
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  position: relative; /* Ensure container positioning */
+}
+
+.update-profile-page .update-profile-container {
+  max-width: 600px;
+  width: 100%;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent background */
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px); /* Slight blur for a glassy effect */
+}
+
+.update-profile-page .update-profile-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333; /* Dark color for the heading */
+  font-family: 'Arial', sans-serif; /* Stylish font */
+}
+
+.update-profile-page .form-group {
+  margin-bottom: 20px;
+}
+
+.update-profile-page .form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.update-profile-page .form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #555;
+}
+
+.update-profile-page button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745; /* Green button */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.update-profile-page button:hover {
+  background-color: #218838; /* Darker green on hover */
+}
+
+.update-profile-page .error {
+  color: #e74c3c; /* Red for errors */
+  text-align: center;
+  margin-bottom: 20px;
+}

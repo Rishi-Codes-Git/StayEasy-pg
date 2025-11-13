@@ -1,0 +1,114 @@
+.hostel-details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  background-color: #fefefe;
+}
+
+.hostel-details-content {
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgb(255, 253, 253);
+}
+
+.hostel-header {
+  border-bottom: 1px solid #101010;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.hostel-header h1 {
+  font-size: 24px;
+  margin: 0;
+  color: white;
+}
+
+.hostel-header .hostel-price {
+  font-size: 18px;
+  color: #ff5722;
+}
+
+.hostel-header .hostel-loan {
+  font-size: 14px;
+  color: #59d4f7;
+}
+
+.hostel-header .hostel-location {
+  font-size: 20px;
+  color: #59d4f7;
+}
+
+.hostel-details-main {
+  display: flex;
+  gap: 20px;
+}
+
+.hostel-images {
+  flex: 1;
+}
+
+.hostel-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.hostel-summary, .hostel-contact {
+  background-color: #28217f;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  color: white;
+}
+
+.hostel-specs p {
+  margin: 0;
+  padding: 5px 0;
+}
+
+.hostel-contact h3 {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+.contact-button, .download-button ,.booking-button{
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.contact-button {
+  background-color: #4bf3f0;
+  color: black;
+  font-family: initial;
+  font-size: 20px;
+}
+
+.download-button {
+  background-color: #7df9b7;
+  color: black;
+  font-family: initial;
+  font-size: 20px;
+}
+
+.booking-button {
+  background-color: #f97dc5;
+  color: black;
+  font-family: initial;
+  font-size: 20px;
+}
+
+.hostel-map {
+  min-height: 400px;
+  width: 100%;
+  position: relative;
+}

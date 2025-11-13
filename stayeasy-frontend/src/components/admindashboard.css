@@ -1,0 +1,107 @@
+/* Updated admindashboard.css */
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #007bff;
+  background-color: #f0f4f8;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  color: #007bff;
+  font-weight: bold;
+}
+
+.header button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.header button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.hostel-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 100px;
+}
+
+.hostel-item {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  width: calc(33.333% - 20px);
+  box-sizing: border-box;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.hostel-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.hostel-item h3 {
+  font-size: 1.75rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.hostel-item p {
+  color: #666;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.hostel-item p strong {
+  color: #333;
+  font-weight: bold;
+}
+.hostel-item button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.hostel-item button:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+.hostel-item button + button {
+  margin-left: 10px;
+  background-color: #dc3545;
+}
+
+.hostel-item button + button:hover {
+  background-color: #c82333;
+}
