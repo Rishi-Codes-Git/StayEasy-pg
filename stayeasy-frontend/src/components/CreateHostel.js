@@ -120,7 +120,7 @@ const CreateHostel = () => {
           <input
             type="number"
             name="sharing"
-            placeholder="Bedrooms"
+            placeholder="Sharing"
             required
             onChange={handleChange}
             className="create-hostel-input"
@@ -212,7 +212,7 @@ const CreateHostel = () => {
           />
           <textarea
             name="legalDocumentation"
-            placeholder="Legal Documentation Details"
+            placeholder="Advance"
             onChange={handleChange}
             className="create-hostel-textarea"
           />

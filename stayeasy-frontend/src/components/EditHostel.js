@@ -106,7 +106,7 @@ const EditHostel = () => {
           {[
             { label: 'Hostel Name', name: 'name', type: 'text', placeholder: 'Enter the hostel name' },
             { label: 'Hostel Description', name: 'description', type: 'textarea', placeholder: 'Enter the hostel description' },
-            { label: 'Number of Bedrooms', name: 'sharing', type: 'number', placeholder: 'Enter the number of sharing' },
+            { label: 'Number of Sharing', name: 'sharing', type: 'number', placeholder: 'Enter the number of sharing' },
             { label: 'Number of Bathrooms', name: 'bathrooms', type: 'number', placeholder: 'Enter the number of bathrooms' },
             { label: 'Floor Area (sq. ft.)', name: 'floorArea', type: 'text', placeholder: 'Enter the floor area in square feet' },
             { label: 'Total Beds', name: 'totalBeds', type: 'number', placeholder: 'Enter the total number of beds' },
@@ -118,7 +118,7 @@ const EditHostel = () => {
             { label: 'Contact Name', name: 'contactName', type: 'text', placeholder: 'Enter the contact name' },
             { label: 'Contact Email', name: 'contactEmail', type: 'email', placeholder: 'Enter the contact email' },
             { label: 'Contact Phone Number', name: 'contactPhoneNumber', type: 'text', placeholder: 'Enter the contact phone number' },
-            { label: 'Legal Documentation', name: 'legalDocumentation', type: 'textarea', placeholder: 'Enter any legal documentation details' },
+            { label: 'Legal Documentation', name: 'legalDocumentation', type: 'number', placeholder: 'Enter any Advance' },
             { label: 'Price', name: 'price', type: 'number', placeholder: 'Enter the price' }
           ].map(({ label, name, type, placeholder }) => (
             <div key={name} className={`form-group ${type === 'textarea' ? 'full-width' : ''}`}>

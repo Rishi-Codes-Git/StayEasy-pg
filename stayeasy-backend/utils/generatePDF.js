@@ -49,7 +49,7 @@ const generatePDF = (hostel) => {
   doc
     .fontSize(12)
     .fillColor('#555')
-    .text(`Bedrooms: ${hostel.sharing}`)
+    .text(`Sharing: ${hostel.sharing}`)
     .moveDown();
 
   doc

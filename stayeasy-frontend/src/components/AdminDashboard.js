@@ -51,7 +51,7 @@ const AdminDashboard = () => {
             {/* <p>{hostel.images}</p> */}
             <h3>{hostel.name}</h3>
             <p><strong>Description:</strong> {hostel.description}</p>
-            <p><strong>Bedrooms:</strong> {hostel.sharing}</p>
+            <p><strong>Sharing:</strong> {hostel.sharing}</p>
             <p><strong>Bathrooms:</strong> {hostel.bathrooms}</p>
             <p><strong>Price:</strong> ₹{hostel.price}</p>
             
