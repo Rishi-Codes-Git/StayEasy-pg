@@ -131,7 +131,7 @@ const HostelDetails = () => {
                   <p><b>Floor Area:</b> {hostel.floorArea} sq. ft.</p>
                   <p><b>Total Beds:</b> {hostel.totalBeds}</p>
                   <p><b>Amenities:</b> {hostel.amenities.join(', ')}</p>
-                  <p><b>Legal Documentation:</b> {hostel.legalDocumentation}</p>
+                  <p><b>Advance:</b> {hostel.advance}</p>
                 </div>
               </div>
               <div className="hostel-contact">

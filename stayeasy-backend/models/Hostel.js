@@ -61,7 +61,7 @@ const hostelSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  legalDocumentation: {
+  advance: {
     type: String, // URL or path to legal documents
   },
   price: {

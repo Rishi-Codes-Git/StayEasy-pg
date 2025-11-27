@@ -21,7 +21,7 @@ const EditHostel = () => {
     contactName: '',
     contactEmail: '',
     contactPhoneNumber: '',
-    legalDocumentation: '',
+    advance: '',
     price: '',
   });
   const navigate = useNavigate();
@@ -118,7 +118,7 @@ const EditHostel = () => {
             { label: 'Contact Name', name: 'contactName', type: 'text', placeholder: 'Enter the contact name' },
             { label: 'Contact Email', name: 'contactEmail', type: 'email', placeholder: 'Enter the contact email' },
             { label: 'Contact Phone Number', name: 'contactPhoneNumber', type: 'text', placeholder: 'Enter the contact phone number' },
-            { label: 'Legal Documentation', name: 'legalDocumentation', type: 'number', placeholder: 'Enter any Advance' },
+            { label: 'Legal Documentation', name: 'advance', type: 'number', placeholder: 'Enter any Advance' },
             { label: 'Price', name: 'price', type: 'number', placeholder: 'Enter the price' }
           ].map(({ label, name, type, placeholder }) => (
             <div key={name} className={`form-group ${type === 'textarea' ? 'full-width' : ''}`}>

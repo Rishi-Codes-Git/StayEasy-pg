@@ -95,7 +95,7 @@ router.put('/hostels/:id', authMiddleware, async (req, res) => {
       contactName: req.body.contactName,
       contactEmail: req.body.contactEmail,
       contactPhoneNumber: req.body.contactPhoneNumber,
-      legalDocumentation: req.body.legalDocumentation,
+      advance: req.body.advance,
       price: req.body.price,
 
     };

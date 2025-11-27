@@ -20,7 +20,7 @@ const CreateHostel = () => {
     contactName: '',
     contactEmail: '',
     contactPhoneNumber: '',
-    legalDocumentation: '',
+    advance: '',
     price: '',
   });
 
@@ -211,7 +211,7 @@ const CreateHostel = () => {
             className="create-hostel-input"
           />
           <textarea
-            name="legalDocumentation"
+            name="advance"
             placeholder="Advance"
             onChange={handleChange}
             className="create-hostel-textarea"
