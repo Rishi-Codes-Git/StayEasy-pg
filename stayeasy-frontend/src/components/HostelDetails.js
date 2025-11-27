@@ -139,7 +139,7 @@ const HostelDetails = () => {
                 <p><b>Name:</b> {hostel.contactName}</p>
                 <p><b>Email:</b> {hostel.contactEmail}</p>
                 <p><b>Phone:</b> {hostel.contactPhoneNumber}</p>
-                {/* <button className="contact-button">Contact Owner</button> */}
+                {/* <button className="contact-button">Contact Owner</button>
                 <button 
                   className="contact-button"
                   onClick={() => setShowContactForm(true)} // Show the modal on click
@@ -149,11 +149,11 @@ const HostelDetails = () => {
                 <button className="download-button" onClick={downloadBrochure}>Download Brochure</button>
                 <button className="booking-button" onClick={handleBookingClick}>
                   Book Now
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
-          <div className="hostel-map">
+          {/* <div className="hostel-map">
             <MapContainer 
               key={position.toString()} // Forces re-render when position changes
               center={position} 
@@ -168,7 +168,7 @@ const HostelDetails = () => {
               </Marker>
             </MapContainer> 
            
-          </div>
+          </div> */}
           
           {showContactForm && (
             <ContactOwnerForm 
