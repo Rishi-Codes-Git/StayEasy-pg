@@ -1,41 +1,44 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
-import './EditHostel.css'; // Import the CSS file
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
+import "./EditHostel.css"; // Import the CSS file
 
 const EditHostel = () => {
   const { id } = useParams();
   const [formData, setFormData] = useState({
-    name: '',
-    description: '',
+    name: "",
+    description: "",
     images: [],
-    sharing: 0,
+    imageFiles: [], // Track actual file objects    sharing: 0,
     bathrooms: 0,
-    floorArea: '',
-    totalBeds: '',
+    floorArea: "",
+    totalBeds: "",
     amenities: [],
-    address: '',
-    city: '',
-    state: '',
-    country: '',
-    contactName: '',
-    contactEmail: '',
-    contactPhoneNumber: '',
-    advance: '',
-    price: '',
+    address: "",
+    city: "",
+    state: "",
+    country: "",
+    contactName: "",
+    contactEmail: "",
+    contactPhoneNumber: "",
+    advance: "",
+    price: "",
   });
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchHostel = async () => {
       try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/hostels/${id}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const token = localStorage.getItem("token");
+        const response = await axios.get(
+          `http://localhost:5000/api/hostels/${id}`,
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
         setFormData(response.data);
       } catch (error) {
-        console.error('Error fetching hostel:', error);
+        console.error("Error fetching hostel:", error);
       }
     };
 
@@ -49,33 +52,34 @@ const EditHostel = () => {
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
     const imageUrls = files.map((file) => URL.createObjectURL(file));
-    setFormData({ ...formData, images: imageUrls });
+    setFormData({ ...formData, images: imageUrls, imageFiles: files });
   };
 
   const validate = () => {
     let formErrors = [];
 
-    if (!formData.name.trim()) formErrors.push('Hostel name is required');
-    if (!formData.description.trim()) formErrors.push('Hostel description is required');
+    if (!formData.name.trim()) formErrors.push("Hostel name is required");
+    if (!formData.description.trim())
+      formErrors.push("Hostel description is required");
 
     if (!formData.contactEmail) {
-      formErrors.push('Contact email is required');
+      formErrors.push("Contact email is required");
     } else if (!/\S+@\S+\.\S+/.test(formData.contactEmail)) {
-      formErrors.push('Email address is invalid');
+      formErrors.push("Email address is invalid");
     }
 
     if (!formData.contactPhoneNumber) {
-      formErrors.push('Contact phone number is required');
+      formErrors.push("Contact phone number is required");
     } else if (!/^\d{10}$/.test(formData.contactPhoneNumber)) {
-      formErrors.push('Phone number must be exactly 10 digits');
+      formErrors.push("Phone number must be exactly 10 digits");
     }
 
     if (!formData.price || formData.price <= 0) {
-      formErrors.push('Price must be a positive number');
+      formErrors.push("Price must be a positive number");
     }
 
     if (formErrors.length > 0) {
-      alert(formErrors.join('\n'));
+      alert(formErrors.join("\n"));
       return false;
     }
 
@@ -88,13 +92,42 @@ const EditHostel = () => {
     if (!validate()) return;
 
     try {
-      const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:5000/api/hostels/${id}`, formData, {
-        headers: { Authorization: `Bearer ${token}` },
+      const token = localStorage.getItem("token");
+      const userRole = localStorage.getItem("userRole");
+
+      // Create FormData for multipart/form-data
+      const submitData = new FormData();
+
+      // Add all fields except images
+      for (let key in formData) {
+        if (key !== "images" && key !== "imageFiles") {
+          submitData.append(key, formData[key]);
+        }
+      }
+
+      // Add only new image files (not existing paths)
+      if (formData.imageFiles && formData.imageFiles.length > 0) {
+        formData.imageFiles.forEach((file) => {
+          submitData.append("images", file);
+        });
+      }
+
+      await axios.put(`http://localhost:5000/api/hostels/${id}`, submitData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
       });
-      navigate('/admin');
+
+      // Redirect based on user role
+      if (userRole === "owner") {
+        navigate("/owner-dashboard");
+      } else {
+        navigate("/admin");
+      }
     } catch (error) {
-      console.error('Error updating hostel:', error);
+      console.error("Error updating hostel:", error);
+      alert(error.response?.data?.error || "Error updating hostel");
     }
   };
 
@@ -104,26 +137,111 @@ const EditHostel = () => {
         <h1>Edit Hostel</h1>
         <form onSubmit={handleSubmit} className="edit-hostel-form">
           {[
-            { label: 'Hostel Name', name: 'name', type: 'text', placeholder: 'Enter the hostel name' },
-            { label: 'Hostel Description', name: 'description', type: 'textarea', placeholder: 'Enter the hostel description' },
-            { label: 'Number of Sharing', name: 'sharing', type: 'number', placeholder: 'Enter the number of sharing' },
-            { label: 'Number of Bathrooms', name: 'bathrooms', type: 'number', placeholder: 'Enter the number of bathrooms' },
-            { label: 'Floor Area (sq. ft.)', name: 'floorArea', type: 'text', placeholder: 'Enter the floor area in square feet' },
-            { label: 'Total Beds', name: 'totalBeds', type: 'number', placeholder: 'Enter the total number of beds' },
-            { label: 'Amenities (comma separated)', name: 'amenities', type: 'text', placeholder: 'Enter amenities separated by commas' },
-            { label: 'Address', name: 'address', type: 'text', placeholder: 'Enter the hostel address' },
-            { label: 'City', name: 'city', type: 'text', placeholder: 'Enter the city' },
-            { label: 'State', name: 'state', type: 'text', placeholder: 'Enter the state' },
-            { label: 'Country', name: 'country', type: 'text', placeholder: 'Enter the country' },
-            { label: 'Contact Name', name: 'contactName', type: 'text', placeholder: 'Enter the contact name' },
-            { label: 'Contact Email', name: 'contactEmail', type: 'email', placeholder: 'Enter the contact email' },
-            { label: 'Contact Phone Number', name: 'contactPhoneNumber', type: 'text', placeholder: 'Enter the contact phone number' },
-            { label: 'Advance', name: 'advance', type: 'number', placeholder: 'Enter any Advance' },
-            { label: 'Price', name: 'price', type: 'number', placeholder: 'Enter the price' }
+            {
+              label: "Hostel Name",
+              name: "name",
+              type: "text",
+              placeholder: "Enter the hostel name",
+            },
+            {
+              label: "Hostel Description",
+              name: "description",
+              type: "textarea",
+              placeholder: "Enter the hostel description",
+            },
+            {
+              label: "Number of Sharing",
+              name: "sharing",
+              type: "number",
+              placeholder: "Enter the number of sharing",
+            },
+            {
+              label: "Number of Bathrooms",
+              name: "bathrooms",
+              type: "number",
+              placeholder: "Enter the number of bathrooms",
+            },
+            {
+              label: "Floor Area (sq. ft.)",
+              name: "floorArea",
+              type: "text",
+              placeholder: "Enter the floor area in square feet",
+            },
+            {
+              label: "Total Beds",
+              name: "totalBeds",
+              type: "number",
+              placeholder: "Enter the total number of beds",
+            },
+            {
+              label: "Amenities (comma separated)",
+              name: "amenities",
+              type: "text",
+              placeholder: "Enter amenities separated by commas",
+            },
+            {
+              label: "Address",
+              name: "address",
+              type: "text",
+              placeholder: "Enter the hostel address",
+            },
+            {
+              label: "City",
+              name: "city",
+              type: "text",
+              placeholder: "Enter the city",
+            },
+            {
+              label: "State",
+              name: "state",
+              type: "text",
+              placeholder: "Enter the state",
+            },
+            {
+              label: "Country",
+              name: "country",
+              type: "text",
+              placeholder: "Enter the country",
+            },
+            {
+              label: "Contact Name",
+              name: "contactName",
+              type: "text",
+              placeholder: "Enter the contact name",
+            },
+            {
+              label: "Contact Email",
+              name: "contactEmail",
+              type: "email",
+              placeholder: "Enter the contact email",
+            },
+            {
+              label: "Contact Phone Number",
+              name: "contactPhoneNumber",
+              type: "text",
+              placeholder: "Enter the contact phone number",
+            },
+            {
+              label: "Advance",
+              name: "advance",
+              type: "number",
+              placeholder: "Enter any Advance",
+            },
+            {
+              label: "Price",
+              name: "price",
+              type: "number",
+              placeholder: "Enter the price",
+            },
           ].map(({ label, name, type, placeholder }) => (
-            <div key={name} className={`form-group ${type === 'textarea' ? 'full-width' : ''}`}>
+            <div
+              key={name}
+              className={`form-group ${
+                type === "textarea" ? "full-width" : ""
+              }`}
+            >
               <label htmlFor={name}>{label}</label>
-              {type === 'textarea' ? (
+              {type === "textarea" ? (
                 <textarea
                   name={name}
                   id={name}
@@ -138,7 +256,7 @@ const EditHostel = () => {
                   name={name}
                   id={name}
                   placeholder={placeholder}
-                  required={type !== 'text' && type !== 'textarea'}
+                  required={type !== "text" && type !== "textarea"}
                   value={formData[name]}
                   onChange={handleChange}
                   className="edit-hostel-input"
@@ -157,7 +275,9 @@ const EditHostel = () => {
               className="edit-hostel-file"
             />
           </div>
-          <button type="submit" className="edit-hostel-button">Update Hostel</button>
+          <button type="submit" className="edit-hostel-button">
+            Update Hostel
+          </button>
         </form>
       </div>
     </div>

@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import './CreateHostel.css';
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./CreateHostel.css";
 
 const CreateHostel = () => {
   const [formFields, setFormFields] = useState({
-    name: '',
-    description: '',
+    name: "",
+    description: "",
     images: [],
-    sharing: '',
-    bathrooms: '',
-    floorArea: '',
-    totalBeds: '',
-    amenities: '',
-    address: '',
-    city: '',
-    state: '',
-    country: '',
-    contactName: '',
-    contactEmail: '',
-    contactPhoneNumber: '',
-    advance: '',
-    price: '',
+    sharing: "",
+    bathrooms: "",
+    floorArea: "",
+    totalBeds: "",
+    amenities: "",
+    address: "",
+    city: "",
+    state: "",
+    country: "",
+    contactName: "",
+    contactEmail: "",
+    contactPhoneNumber: "",
+    advance: "",
+    price: "",
   });
 
   const navigate = useNavigate();
@@ -29,27 +29,28 @@ const CreateHostel = () => {
   const validate = () => {
     let formErrors = [];
 
-    if (!formFields.name.trim()) formErrors.push('Hostel name is required');
-    if (!formFields.description.trim()) formErrors.push('Hostel description is required');
+    if (!formFields.name.trim()) formErrors.push("Hostel name is required");
+    if (!formFields.description.trim())
+      formErrors.push("Hostel description is required");
 
     if (!formFields.contactEmail) {
-      formErrors.push('Contact email is required');
+      formErrors.push("Contact email is required");
     } else if (!/\S+@\S+\.\S+/.test(formFields.contactEmail)) {
-      formErrors.push('Email address is invalid');
+      formErrors.push("Email address is invalid");
     }
 
     if (!formFields.contactPhoneNumber) {
-      formErrors.push('Contact phone number is required');
+      formErrors.push("Contact phone number is required");
     } else if (!/^\d{10}$/.test(formFields.contactPhoneNumber)) {
-      formErrors.push('Phone number must be exactly 10 digits');
+      formErrors.push("Phone number must be exactly 10 digits");
     }
 
     if (!formFields.price || formFields.price <= 0) {
-      formErrors.push('Price must be a positive number');
+      formErrors.push("Price must be a positive number");
     }
 
     if (formErrors.length > 0) {
-      alert(formErrors.join('\n'));
+      alert(formErrors.join("\n"));
       return false;
     }
 
@@ -74,19 +75,28 @@ const CreateHostel = () => {
     for (let key in formFields) {
       formData.append(key, formFields[key]);
     }
-    formFields.images.forEach(image => formData.append('images', image));
+    formFields.images.forEach((image) => formData.append("images", image));
 
     try {
-      const token = localStorage.getItem('token');
-      await axios.post('http://localhost:5000/api/hostels', formData, {
+      const token = localStorage.getItem("token");
+      const userRole = localStorage.getItem("userRole");
+
+      await axios.post("http://localhost:5000/api/hostels", formData, {
         headers: {
           Authorization: `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       });
-      navigate('/admin');
+
+      // Redirect based on user role
+      if (userRole === "owner") {
+        navigate("/owner-dashboard");
+      } else {
+        navigate("/admin");
+      }
     } catch (error) {
-      console.error('Error creating hostel:', error.response.data);
+      console.error("Error creating hostel:", error.response?.data);
+      alert(error.response?.data?.error || "Error creating hostel");
     }
   };
 
@@ -94,7 +104,11 @@ const CreateHostel = () => {
     <div className="create-hostel-page">
       <div className="create-hostel-container">
         <h1 className="create-hostel-title">Create Hostel</h1>
-        <form className="create-hostel-form" onSubmit={handleSubmit} encType="multipart/form-data">
+        <form
+          className="create-hostel-form"
+          onSubmit={handleSubmit}
+          encType="multipart/form-data"
+        >
           <input
             type="text"
             name="name"
@@ -224,7 +238,9 @@ const CreateHostel = () => {
             onChange={handleChange}
             className="create-hostel-input"
           />
-          <button type="submit" className="create-hostel-button">Create Hostel</button>
+          <button type="submit" className="create-hostel-button">
+            Create Hostel
+          </button>
         </form>
       </div>
     </div>

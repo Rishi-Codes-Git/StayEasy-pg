@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
-import './Login.css';
+import React, { useState } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import "./Login.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
-  
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -18,15 +17,27 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(''); // Reset error message
+    setError(""); // Reset error message
     // console.log('Login Payload:', formData); // Log the payload
     try {
-      const response = await axios.post('http://localhost:5000/api/login', formData);
-      localStorage.setItem('token', response.data.token);
-      navigate('/dashboard'); // Redirect to dashboard
+      const response = await axios.post(
+        "http://localhost:5000/api/login",
+        formData
+      );
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("userRole", response.data.role);
+
+      // Redirect based on user role
+      if (response.data.role === "owner") {
+        navigate("/owner-dashboard");
+      } else if (response.data.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/dashboard");
+      }
     } catch (error) {
-      console.error('Login Error:', error.response?.data); // Log error response
-      setError('Invalid email or password');
+      console.error("Login Error:", error.response?.data); // Log error response
+      setError("Invalid email or password");
       //console.error(error);
     }
   };
@@ -54,10 +65,12 @@ const Login = () => {
           onChange={handleChange}
           className="login-input"
         />
-        <button type="submit" className="login-button">Login</button>
-        <p className="login-links">
+        <button type="submit" className="login-button">
+          Login
+        </button>
+        {/* <p className="login-links">
           <Link to="/forgot-password">Forgot Password?</Link>
-        </p>
+        </p> */}
         <p className="login-links">
           New User? <Link to="/signup">Sign Up</Link>
         </p>
@@ -67,5 +80,3 @@ const Login = () => {
 };
 
 export default Login;
-
-

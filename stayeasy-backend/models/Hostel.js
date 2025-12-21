@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const hostelSchema = new mongoose.Schema({
   name: {
@@ -49,6 +49,11 @@ const hostelSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  ownerId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   contactName: {
     type: String,
     required: true,
@@ -74,7 +79,6 @@ const hostelSchema = new mongoose.Schema({
   },
 });
 
-const Hostel = mongoose.model('Hostel', hostelSchema);
+const Hostel = mongoose.model("Hostel", hostelSchema);
 
 module.exports = Hostel;
-

@@ -52,7 +52,7 @@ const PG = () => {
         <div className="container">
           <h2>Stay-Easy</h2>
           <p style={{ fontSize: '30px' }}>Your Dream PG Awaits</p>
-          <a href="/signup" className="btn">Login</a>
+          <a href="/signup" className="btn">Sign-Up</a>
         </div>
       </section>
 

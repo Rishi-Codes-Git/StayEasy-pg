@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
 
-const Signup = () => {
+const OwnerSignup = () => {
   const [formData, setFormData] = useState({
     username: "",
     phone: "",
@@ -39,28 +39,27 @@ const Signup = () => {
     }
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/signup",
+        "http://localhost:5000/api/owner-signup",
         formData
       );
       console.log(response.data); // Handle successful response
       localStorage.setItem("token", response.data.token); // Save token to localStorage
-      //console.log(response.data); // Handle successful response
-      window.location.href = "/dashboard"; // Redirect to Dashboard
-      // Redirect to the dashboard
-      //navigate('/dashboard');
+      localStorage.setItem("userRole", response.data.role); // Save role to localStorage
+      window.location.href = "/owner-dashboard"; // Redirect to Owner Dashboard
     } catch (error) {
       console.error(error); // Handle error response
+      alert(error.response?.data?.error || "Error creating owner account");
     }
   };
 
   return (
     <div className="signup-container">
       <form onSubmit={handleSubmit} className="signup-form">
-        <h1>Signup Form</h1>
+        <h1>Hostel Owner Sign Up</h1>
         <input
           type="text"
           name="username"
-          placeholder="Username"
+          placeholder="Business Name / Username"
           required
           onChange={handleChange}
           className="signup-input"
@@ -98,17 +97,17 @@ const Signup = () => {
           className="signup-input"
         />
         <button type="submit" className="signup-button">
-          Sign Up
+          Create Owner Account
         </button>
         <p className="signup-links">
           Already have an account? <Link to="/login">Login here</Link>
         </p>
         <p className="signup-links">
-          Hostel Owner? <Link to="/owner-signup">Owner Sign Up</Link>
+          Guest User? <Link to="/signup">Sign Up as Guest</Link>
         </p>
       </form>
     </div>
   );
 };
 
-export default Signup;
+export default OwnerSignup;
