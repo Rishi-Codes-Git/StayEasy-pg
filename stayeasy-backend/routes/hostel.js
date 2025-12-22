@@ -57,12 +57,21 @@ router.post(
         ? req.files.map((file) => `/uploads/${file.filename}`)
         : [];
 
-      // Create a new hostel document with the uploaded image URLs and owner ID
-      const hostel = new Hostel({
+      // Convert string numbers to actual numbers
+      const hostelData = {
         ...req.body,
+        sharing: parseInt(req.body.sharing) || 1,
+        bathrooms: parseInt(req.body.bathrooms) || 1,
+        floorArea: parseInt(req.body.floorArea) || 100,
+        totalBeds: parseInt(req.body.totalBeds) || 1,
+        price: parseFloat(req.body.price) || 0,
+        advance: parseFloat(req.body.advance) || 0,
         images: imageUrls,
         ownerId: req.user._id,
-      });
+      };
+
+      // Create a new hostel document with the uploaded image URLs and owner ID
+      const hostel = new Hostel(hostelData);
 
       // Save the hostel document to the database
       await hostel.save();
@@ -71,7 +80,7 @@ router.post(
       res.status(201).json(hostel);
     } catch (error) {
       console.error("Error creating hostel:", error.message || error);
-      console.error("Error details:", error);
+      console.error("Request body:", req.body);
       res
         .status(400)
         .json({
