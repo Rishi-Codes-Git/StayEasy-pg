@@ -10,7 +10,7 @@ const router = express.Router();
 // Rate limiters
 const signupLimiter = rateLimit({
   windowMs: 60 * 60 * 1000, // 1 hour
-  max: 3, // 3 requests per hour
+  max: 50, // Increased to 50 for testing/demo
   message: "Too many signup attempts, please try again later",
   standardHeaders: true,
   legacyHeaders: false,
