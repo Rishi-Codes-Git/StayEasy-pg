@@ -1,30 +1,31 @@
 const express = require("express");
 const multer = require("multer");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const Hostel = require("../models/Hostel");
 const {
   authMiddleware,
   ownerMiddleware,
 } = require("../middleware/authMiddleware");
 
+require("dotenv").config();
+
 const router = express.Router();
 
-const fs = require("fs");
-const path = require("path");
+// Configure Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
-const uploadsDir = path.join(__dirname, "../uploads");
-if (!fs.existsSync(uploadsDir)) {
-  fs.mkdirSync(uploadsDir, { recursive: true });
-}
-
-// Configure multer for file uploads with absolute path
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, uploadsDir);
-  },
-  filename: function (req, file, cb) {
-    // Sanitize filename and add timestamp
-    const sanitizedName = file.originalname.replace(/[^a-zA-Z0-9.-]/g, "_");
-    cb(null, `${Date.now()}-${sanitizedName}`);
+// Configure multer storage for Cloudinary
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: "stayeasy-hostels",
+    resource_type: "auto",
+    allowed_formats: ["jpg", "jpeg", "png", "gif", "webp"],
   },
 });
 
@@ -52,9 +53,9 @@ router.post(
   upload.array("images", 10),
   async (req, res) => {
     try {
-      // Create URLs for the uploaded files
+      // Get Cloudinary URLs from uploaded files
       const imageUrls = req.files
-        ? req.files.map((file) => `/uploads/${file.filename}`)
+        ? req.files.map((file) => file.path) // Cloudinary returns the URL in 'path'
         : [];
 
       // Convert string numbers to actual numbers
@@ -81,12 +82,10 @@ router.post(
     } catch (error) {
       console.error("Error creating hostel:", error.message || error);
       console.error("Request body:", req.body);
-      res
-        .status(400)
-        .json({
-          error: error.message || "Error creating hostel",
-          details: error.errors,
-        });
+      res.status(400).json({
+        error: error.message || "Error creating hostel",
+        details: error.errors,
+      });
     }
   }
 );
