@@ -53,7 +53,9 @@ router.post(
   async (req, res) => {
     try {
       // Create URLs for the uploaded files
-      const imageUrls = req.files.map((file) => `/uploads/${file.filename}`);
+      const imageUrls = req.files
+        ? req.files.map((file) => `/uploads/${file.filename}`)
+        : [];
 
       // Create a new hostel document with the uploaded image URLs and owner ID
       const hostel = new Hostel({
@@ -69,7 +71,13 @@ router.post(
       res.status(201).json(hostel);
     } catch (error) {
       console.error("Error creating hostel:", error.message || error);
-      res.status(400).json({ error: error.message || "Error creating hostel" });
+      console.error("Error details:", error);
+      res
+        .status(400)
+        .json({
+          error: error.message || "Error creating hostel",
+          details: error.errors,
+        });
     }
   }
 );
