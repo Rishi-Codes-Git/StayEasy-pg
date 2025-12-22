@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import API_BASE_URL from "../config";
 import "./Signup.css";
 
 const Signup = () => {
@@ -38,10 +39,7 @@ const Signup = () => {
       return;
     }
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/signup",
-        formData
-      );
+      const response = await axios.post(`${API_BASE_URL}/api/signup`, formData);
       console.log(response.data); // Handle successful response
       localStorage.setItem("token", response.data.token); // Save token to localStorage
       //console.log(response.data); // Handle successful response

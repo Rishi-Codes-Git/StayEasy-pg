@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import API_BASE_URL from "../config";
 import "./admindashboard.css";
 
 const AdminDashboard = () => {
@@ -27,7 +28,7 @@ const AdminDashboard = () => {
           return;
         }
 
-        const response = await axios.get("http://localhost:5000/api/hostels", {
+        const response = await axios.get(`${API_BASE_URL}/api/hostels`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setHostels(response.data);
@@ -48,7 +49,7 @@ const AdminDashboard = () => {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/hostels/${id}`, {
+      await axios.delete(`${API_BASE_URL}/api/hostels/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setHostels(hostels.filter((hostel) => hostel._id !== id));

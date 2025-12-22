@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import API_BASE_URL from "../config";
 import "./Login.css";
 
 const Login = () => {
@@ -20,10 +21,7 @@ const Login = () => {
     setError(""); // Reset error message
     // console.log('Login Payload:', formData); // Log the payload
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/login",
-        formData
-      );
+      const response = await axios.post(`${API_BASE_URL}/api/login`, formData);
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("userRole", response.data.role);
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import API_BASE_URL from "../config";
 import "./EditHostel.css"; // Import the CSS file
 
 const EditHostel = () => {
@@ -30,12 +31,9 @@ const EditHostel = () => {
     const fetchHostel = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get(
-          `http://localhost:5000/api/hostels/${id}`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+        const response = await axios.get(`${API_BASE_URL}/api/hostels/${id}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setFormData(response.data);
       } catch (error) {
         console.error("Error fetching hostel:", error);
@@ -112,7 +110,7 @@ const EditHostel = () => {
         });
       }
 
-      await axios.put(`http://localhost:5000/api/hostels/${id}`, submitData, {
+      await axios.put(`${API_BASE_URL}/api/hostels/${id}`, submitData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",

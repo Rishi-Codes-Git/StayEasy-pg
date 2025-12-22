@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import HostelCard from './HostelCard';
-import './HostelsPage.css';
-import videoSrc from './images/vd.mp4';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import API_BASE_URL from "../config";
+import HostelCard from "./HostelCard";
+import "./HostelsPage.css";
+import videoSrc from "./images/vd.mp4";
 
 const HostelsPage = () => {
   const [hostels, setHostels] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [filteredHostels, setFilteredHostels] = useState([]);
 
   useEffect(() => {
     const fetchHostels = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/hostels');
+        const response = await axios.get(`${API_BASE_URL}/api/hostels`);
         setHostels(response.data);
         setFilteredHostels(response.data);
       } catch (error) {
-        console.error('Error fetching hostels:', error);
+        console.error("Error fetching hostels:", error);
       }
     };
 
@@ -26,12 +27,15 @@ const HostelsPage = () => {
   useEffect(() => {
     const filterHostels = () => {
       const lowercasedQuery = searchQuery.toLowerCase();
-      return hostels.filter(hostel => {
+      return hostels.filter((hostel) => {
         return (
-          (hostel.name && hostel.name.toLowerCase().includes(lowercasedQuery)) ||
+          (hostel.name &&
+            hostel.name.toLowerCase().includes(lowercasedQuery)) ||
           (hostel.price && hostel.price.toString().includes(lowercasedQuery)) ||
-          (hostel.address && hostel.address.toLowerCase().includes(lowercasedQuery)) ||
-          (hostel.city && hostel.city.toLowerCase().includes(lowercasedQuery)) ||
+          (hostel.address &&
+            hostel.address.toLowerCase().includes(lowercasedQuery)) ||
+          (hostel.city &&
+            hostel.city.toLowerCase().includes(lowercasedQuery)) ||
           (hostel.state && hostel.state.toLowerCase().includes(lowercasedQuery))
         );
       });
@@ -60,12 +64,12 @@ const HostelsPage = () => {
             onChange={handleSearchChange}
           />
           <button className="search-button">
-            <i className="fas fa-search"></i> 
+            <i className="fas fa-search"></i>
           </button>
         </div>
         <div className="hostel-list">
           {filteredHostels.length > 0 ? (
-            filteredHostels.map(hostel => (
+            filteredHostels.map((hostel) => (
               <HostelCard key={hostel._id} hostel={hostel} />
             ))
           ) : (

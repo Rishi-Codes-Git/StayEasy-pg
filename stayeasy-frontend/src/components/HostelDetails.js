@@ -1,32 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import ImageGallery from 'react-image-gallery';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import L from 'leaflet'; 
-import ContactOwnerForm from './ContactOwnerForm'; 
-import './HostelDetails.css';
-import 'react-image-gallery/styles/css/image-gallery.css';
-import 'leaflet/dist/leaflet.css';
-import markerIcon from 'leaflet/dist/images/marker-icon.png'; // Import default marker icon
-import markerShadow from 'leaflet/dist/images/marker-shadow.png'; // Import marker shadow
-import { useNavigate } from 'react-router-dom';  
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import ImageGallery from "react-image-gallery";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import L from "leaflet";
+import ContactOwnerForm from "./ContactOwnerForm";
+import API_BASE_URL from "../config";
+import "./HostelDetails.css";
+import "react-image-gallery/styles/css/image-gallery.css";
+import "leaflet/dist/leaflet.css";
+import markerIcon from "leaflet/dist/images/marker-icon.png"; // Import default marker icon
+import markerShadow from "leaflet/dist/images/marker-shadow.png"; // Import marker shadow
+import { useNavigate } from "react-router-dom";
 
 const HostelDetails = () => {
   const { id } = useParams();
   const [hostel, setHostel] = useState(null);
   const [position, setPosition] = useState([23.0225, 72.5714]); // Default position
   const [showContactForm, setShowContactForm] = useState(false); // State to control modal visibility
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
 
   const handleBookingClick = () => {
-    navigate('/booking', { state: { id } });  
+    navigate("/booking", { state: { id } });
   };
 
   useEffect(() => {
     const fetchHostel = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/hostels/${id}`);
+        const response = await axios.get(`${API_BASE_URL}/api/hostels/${id}`);
         const hostelData = response.data;
         setHostel(hostelData);
 
@@ -46,7 +47,7 @@ const HostelDetails = () => {
           setPosition([hostelData.latitude, hostelData.longitude]);
         }
       } catch (error) {
-        console.error('Error fetching hostel details:', error);
+        console.error("Error fetching hostel details:", error);
       }
     };
 
@@ -60,14 +61,14 @@ const HostelDetails = () => {
     iconSize: [25, 41], // Size of the icon
     iconAnchor: [12, 41], // Point of the icon which will correspond to marker's location
     popupAnchor: [1, -34], // Point from which the popup should open relative to the iconAnchor
-    shadowSize: [41, 41]  // Size of the shadow
+    shadowSize: [41, 41], // Size of the shadow
   });
 
   const renderGallery = () => {
     if (hostel && hostel.images && hostel.images.length > 0) {
       const images = hostel.images.map((image) => ({
-        original: `http://localhost:5000${image}`,
-        thumbnail: `http://localhost:5000${image}`,
+        original: `${API_BASE_URL}${image}`,
+        thumbnail: `${API_BASE_URL}${image}`,
       }));
       return <ImageGallery items={images} showThumbnails={true} />;
     }
@@ -76,15 +77,15 @@ const HostelDetails = () => {
 
   const downloadBrochure = () => {
     axios({
-      url: `http://localhost:5000/api/hostels/${id}/brochure`, // Use template literal here
-      method: 'GET',
-      responseType: 'blob', // Important for file download
+      url: `${API_BASE_URL}/api/hostels/${id}/brochure`, // Use template literal here
+      method: "GET",
+      responseType: "blob", // Important for file download
     })
       .then((response) => {
         const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement('a');
+        const link = document.createElement("a");
         link.href = url;
-        link.setAttribute('download', `${hostel.name}-brochure.pdf`); // Set download filename using template literal
+        link.setAttribute("download", `${hostel.name}-brochure.pdf`); // Set download filename using template literal
         document.body.appendChild(link);
         link.click();
         link.remove();
@@ -94,20 +95,18 @@ const HostelDetails = () => {
         if (error.response) {
           // The request was made and the server responded with a status code
           // that falls out of the range of 2xx
-          console.error('Error response data:', error.response.data);
-          console.error('Error response status:', error.response.status);
-          console.error('Error response headers:', error.response.headers);
+          console.error("Error response data:", error.response.data);
+          console.error("Error response status:", error.response.status);
+          console.error("Error response headers:", error.response.headers);
         } else if (error.request) {
           // The request was made but no response was received
-          console.error('Error request data:', error.request);
+          console.error("Error request data:", error.request);
         } else {
           // Something happened in setting up the request that triggered an Error
-          console.error('Error message:', error.message);
+          console.error("Error message:", error.message);
         }
       });
-      
   };
-  
 
   return (
     <div className="hostel-details-container">
@@ -116,29 +115,49 @@ const HostelDetails = () => {
           <div className="hostel-header">
             <h1>{hostel.name}</h1>
             <p className="hostel-price">₹{hostel.price}</p>
-            <p className="hostel-location">{hostel.address}, {hostel.city}, {hostel.state}, {hostel.country}</p>
+            <p className="hostel-location">
+              {hostel.address}, {hostel.city}, {hostel.state}, {hostel.country}
+            </p>
           </div>
           <div className="hostel-details-main">
-            <div className="hostel-images">
-              {renderGallery()}
-            </div>
+            <div className="hostel-images">{renderGallery()}</div>
             <div className="hostel-info">
               <div className="hostel-summary">
-                <p><b>Description:</b> {hostel.description}</p>
+                <p>
+                  <b>Description:</b> {hostel.description}
+                </p>
                 <div className="hostel-specs">
-                  <p><b>Sharing:</b> {hostel.sharing}</p>
-                  <p><b>Bathrooms:</b> {hostel.bathrooms}</p>
-                  <p><b>Floor Area:</b> {hostel.floorArea} sq. ft.</p>
-                  <p><b>Total Beds:</b> {hostel.totalBeds}</p>
-                  <p><b>Amenities:</b> {hostel.amenities.join(', ')}</p>
-                  <p><b>Advance:</b> {hostel.advance}</p>
+                  <p>
+                    <b>Sharing:</b> {hostel.sharing}
+                  </p>
+                  <p>
+                    <b>Bathrooms:</b> {hostel.bathrooms}
+                  </p>
+                  <p>
+                    <b>Floor Area:</b> {hostel.floorArea} sq. ft.
+                  </p>
+                  <p>
+                    <b>Total Beds:</b> {hostel.totalBeds}
+                  </p>
+                  <p>
+                    <b>Amenities:</b> {hostel.amenities.join(", ")}
+                  </p>
+                  <p>
+                    <b>Advance:</b> {hostel.advance}
+                  </p>
                 </div>
               </div>
               <div className="hostel-contact">
                 <h3>Contact Owner</h3>
-                <p><b>Name:</b> {hostel.contactName}</p>
-                <p><b>Email:</b> {hostel.contactEmail}</p>
-                <p><b>Phone:</b> {hostel.contactPhoneNumber}</p>
+                <p>
+                  <b>Name:</b> {hostel.contactName}
+                </p>
+                <p>
+                  <b>Email:</b> {hostel.contactEmail}
+                </p>
+                <p>
+                  <b>Phone:</b> {hostel.contactPhoneNumber}
+                </p>
                 {/* <button className="contact-button">Contact Owner</button>
                 <button 
                   className="contact-button"
@@ -169,11 +188,11 @@ const HostelDetails = () => {
             </MapContainer> 
            
           </div> */}
-          
+
           {showContactForm && (
-            <ContactOwnerForm 
-              hostel={hostel} 
-              onClose={() => setShowContactForm(false)} 
+            <ContactOwnerForm
+              hostel={hostel}
+              onClose={() => setShowContactForm(false)}
             />
           )}
         </div>
@@ -185,5 +204,3 @@ const HostelDetails = () => {
 };
 
 export default HostelDetails;
-
-
