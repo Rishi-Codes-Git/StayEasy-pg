@@ -33,9 +33,21 @@ app.use(
 ); // Set security HTTP headers with CORS for images
 
 // Restrict CORS to specific origin
+const allowedOrigins = [
+  process.env.FRONTEND_URL || "http://localhost:3000",
+  "https://stay-easy-pg.vercel.app",
+  "http://localhost:3000",
+];
+
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -47,13 +59,19 @@ app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 // Serve uploaded files with proper CORS headers
-const corsOptions = {
-  origin: process.env.FRONTEND_URL || "http://localhost:3000",
+const uploadCorsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
 };
 app.use(
   "/uploads",
-  cors(corsOptions),
+  cors(uploadCorsOptions),
   express.static(path.join(__dirname, "uploads"))
 );
 
