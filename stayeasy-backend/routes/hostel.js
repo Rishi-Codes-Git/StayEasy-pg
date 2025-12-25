@@ -149,8 +149,8 @@ router.put(
       // Handle images: use new uploaded images or keep existing ones
       let updatedImages = hostel.images; // Keep existing images by default
       if (req.files && req.files.length > 0) {
-        // If new files are uploaded, replace with new URLs
-        updatedImages = req.files.map((file) => `/uploads/${file.filename}`);
+        // If new files are uploaded, replace with Cloudinary URLs
+        updatedImages = req.files.map((file) => file.path); // Cloudinary returns URL in 'path'
       }
 
       const updatedHostelData = {
