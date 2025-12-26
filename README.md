@@ -95,17 +95,6 @@ A full-stack web application for browsing, booking, and managing PG accommodatio
 - Filter by price, location, amenities
 - Real-time search functionality
 
-## 🔮 Future Enhancements
-
-- [ ] Payment integration for bookings
-- [ ] Email notifications for booking confirmations
-- [ ] Review and rating system
-- [ ] Advanced search with filters
-- [ ] Booking calendar with availability
-- [ ] Chat system between users and owners
-- [ ] Map integration for location
-- [ ] Mobile app (React Native)
-
 ## 👤 Author
 
 **Rishi**
