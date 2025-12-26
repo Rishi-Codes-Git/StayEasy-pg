@@ -179,7 +179,13 @@ router.put(
       );
       res.status(200).json(updatedHostel);
     } catch (error) {
-      res.status(400).json({ error: "Error updating hostel" });
+      console.error("Error updating hostel:", error.message || error);
+      console.error("Request body:", req.body);
+      console.error("Files:", req.files);
+      res.status(400).json({
+        error: error.message || "Error updating hostel",
+        details: error.errors,
+      });
     }
   }
 );
