@@ -57,12 +57,12 @@ A full-stack web application for browsing, booking, and managing PG accommodatio
 
 ### Screenshots
 
-<img width="1846" height="861" alt="Login" src="https://github.com/user-attachments/assets/8b72b5ac-2d92-4922-9a66-4f9691074fc5" />
-<img width="1409" height="831" alt="Sign-Up" src="https://github.com/user-attachments/assets/dbb2f6e6-39e7-48ca-800b-75528983feb0" />
-<img width="1826" height="830" alt="Home" src="https://github.com/user-attachments/assets/2a951c05-9931-4990-ad7b-8dca83f2ffa2" />
-<img width="1828" height="862" alt="Hostel Listing" src="https://github.com/user-attachments/assets/67f53bdf-93e4-4a8d-b693-837c5273f032" />
-<img width="1831" height="866" alt="Hostel Detail" src="https://github.com/user-attachments/assets/d59bdb1f-b9cf-4d20-a870-dd7a8a6fc16d" />
-<img width="1824" height="860" alt="About Us" src="https://github.com/user-attachments/assets/1cd8ed5a-6f05-49fd-b503-93351e7d101d" />
+<img width="1846" height="861" alt="Login" src="https://github.com/user-attachments/assets/8b72b5ac-2d92-4922-9a66-4f9691074fc5" /> <br />
+<img width="1409" height="831" alt="Sign-Up" src="https://github.com/user-attachments/assets/dbb2f6e6-39e7-48ca-800b-75528983feb0" /> <br />
+<img width="1826" height="830" alt="Home" src="https://github.com/user-attachments/assets/2a951c05-9931-4990-ad7b-8dca83f2ffa2" /> <br />
+<img width="1828" height="862" alt="Hostel Listing" src="https://github.com/user-attachments/assets/67f53bdf-93e4-4a8d-b693-837c5273f032" /> <br />
+<img width="1831" height="866" alt="Hostel Detail" src="https://github.com/user-attachments/assets/d59bdb1f-b9cf-4d20-a870-dd7a8a6fc16d" /> <br />
+<img width="1824" height="860" alt="About Us" src="https://github.com/user-attachments/assets/1cd8ed5a-6f05-49fd-b503-93351e7d101d" /> <br />
 
 ### Deployment
 
@@ -106,40 +106,10 @@ A full-stack web application for browsing, booking, and managing PG accommodatio
 - [ ] Map integration for location
 - [ ] Mobile app (React Native)
 
-## 👥 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
 ## 👤 Author
 
 **Rishi**
 
 - GitHub: [@Rishi-Codes-Git](https://github.com/Rishi-Codes-Git)
 
-## 🙏 Acknowledgments
-
-- MongoDB Atlas for database hosting
-- Cloudinary for image storage
-- Vercel for frontend hosting
-- Render for backend hosting
-- React community for excellent documentation
-
----
-
 Made with ❤️ by Rishi
-
-- Owner dashboard to add/manage hostels
-- Secure login/signup with JWT
-
----
-
-## 🧱 Tech Stack
-
-- **Frontend:** React.js
-- **Backend:** Node.js + Express.js
-- **Database:** MongoDB
-- **Authentication:** JWT + bcrypt
