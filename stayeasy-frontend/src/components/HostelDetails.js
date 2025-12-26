@@ -67,8 +67,8 @@ const HostelDetails = () => {
   const renderGallery = () => {
     if (hostel && hostel.images && hostel.images.length > 0) {
       const images = hostel.images.map((image) => ({
-        original: `${API_BASE_URL}${image}`,
-        thumbnail: `${API_BASE_URL}${image}`,
+        original: image.startsWith("http") ? image : `${API_BASE_URL}${image}`,
+        thumbnail: image.startsWith("http") ? image : `${API_BASE_URL}${image}`,
       }));
       return <ImageGallery items={images} showThumbnails={true} />;
     }

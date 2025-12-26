@@ -15,8 +15,11 @@ const HostelCard = ({ hostel }) => {
       {hostel.images && hostel.images.length > 0 ? (
         <div className="image-container">
           <img
-            //src={hostel.images[0]}
-            src={`${API_BASE_URL}${hostel.images[0]}`}
+            src={
+              hostel.images[0].startsWith("http")
+                ? hostel.images[0]
+                : `${API_BASE_URL}${hostel.images[0]}`
+            }
             alt={hostel.name}
             className="hostel-image"
           />
