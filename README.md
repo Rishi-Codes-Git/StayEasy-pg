@@ -55,130 +55,21 @@ A full-stack web application for browsing, booking, and managing PG accommodatio
 - **Helmet** - Security headers
 - **Express Rate Limit** - API rate limiting
 
+### Screenshots
+
+<img width="1846" height="861" alt="Login" src="https://github.com/user-attachments/assets/8b72b5ac-2d92-4922-9a66-4f9691074fc5" />
+<img width="1409" height="831" alt="Sign-Up" src="https://github.com/user-attachments/assets/dbb2f6e6-39e7-48ca-800b-75528983feb0" />
+<img width="1826" height="830" alt="Home" src="https://github.com/user-attachments/assets/2a951c05-9931-4990-ad7b-8dca83f2ffa2" />
+<img width="1828" height="862" alt="Hostel Listing" src="https://github.com/user-attachments/assets/67f53bdf-93e4-4a8d-b693-837c5273f032" />
+<img width="1831" height="866" alt="Hostel Detail" src="https://github.com/user-attachments/assets/d59bdb1f-b9cf-4d20-a870-dd7a8a6fc16d" />
+<img width="1824" height="860" alt="About Us" src="https://github.com/user-attachments/assets/1cd8ed5a-6f05-49fd-b503-93351e7d101d" />
+
 ### Deployment
 
 - **Vercel** - Frontend hosting
 - **Render** - Backend hosting
 - **MongoDB Atlas** - Database hosting
 - **Cloudinary** - Image CDN
-
-## 🚀 Installation
-
-### Prerequisites
-
-- Node.js (v14 or higher)
-- MongoDB Atlas account
-- Cloudinary account
-
-### Clone the Repository
-
-```bash
-git clone https://github.com/Rishi-Codes-Git/StayEasy-pg.git
-cd stay-easy-pg
-```
-
-### Backend Setup
-
-```bash
-cd stayeasy-backend
-npm install
-```
-
-Create a `.env` file in `stayeasy-backend/`:
-
-```env
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
-FRONTEND_URL=http://localhost:3000
-CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
-CLOUDINARY_API_KEY=your_cloudinary_api_key
-CLOUDINARY_API_SECRET=your_cloudinary_api_secret
-```
-
-Start the backend server:
-
-```bash
-npm start
-```
-
-Backend runs on `http://localhost:5000`
-
-### Frontend Setup
-
-```bash
-cd stayeasy-frontend
-npm install
-```
-
-Create a `.env` file in `stayeasy-frontend/`:
-
-```env
-REACT_APP_API_URL=http://localhost:5000
-```
-
-Start the frontend development server:
-
-```bash
-npm start
-```
-
-Frontend runs on `http://localhost:3000`
-
-## 📁 Project Structure
-
-```
-stay-easy-pg/
-├── stayeasy-backend/
-│   ├── controllers/        # Request handlers
-│   ├── middleware/         # Auth & validation middleware
-│   ├── models/            # MongoDB schemas
-│   ├── routes/            # API routes
-│   ├── utils/             # Helper functions
-│   ├── server.js          # Entry point
-│   └── package.json
-│
-├── stayeasy-frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/    # React components
-│   │   ├── config.js      # API configuration
-│   │   ├── App.js         # Main app component
-│   │   └── index.js       # Entry point
-│   └── package.json
-│
-└── README.md
-```
-
-## 🔐 Environment Variables
-
-### Backend (.env)
-
-| Variable                | Description               |
-| ----------------------- | ------------------------- |
-| `MONGO_URI`             | MongoDB connection string |
-| `JWT_SECRET`            | Secret key for JWT tokens |
-| `FRONTEND_URL`          | Frontend URL for CORS     |
-| `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name     |
-| `CLOUDINARY_API_KEY`    | Cloudinary API key        |
-| `CLOUDINARY_API_SECRET` | Cloudinary API secret     |
-
-### Frontend (.env)
-
-| Variable            | Description     |
-| ------------------- | --------------- |
-| `REACT_APP_API_URL` | Backend API URL |
-
-## 🔒 Security Features
-
-- **JWT Authentication** - Secure token-based authentication
-- **Password Hashing** - bcrypt for password encryption
-- **Rate Limiting** - Protection against brute force attacks
-- **Input Validation** - express-validator for data sanitization
-- **Helmet.js** - Security headers
-- **CORS** - Configured for specific origins
-- **Role-Based Access Control** - Separate permissions for users, owners, and admins
-
-## 📸 Features in Detail
 
 ### Image Management
 
@@ -203,52 +94,6 @@ stay-easy-pg/
 - Delete hostel listings
 - Filter by price, location, amenities
 - Real-time search functionality
-
-## 🌟 Deployment
-
-### Frontend (Vercel)
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-cd stayeasy-frontend
-vercel --prod
-```
-
-### Backend (Render)
-
-1. Connect GitHub repository to Render
-2. Set environment variables in Render dashboard
-3. Deploy automatically on git push
-
-## 📝 API Endpoints
-
-### Authentication
-
-- `POST /api/signup` - User registration
-- `POST /api/login` - User login
-- `POST /api/owner-signup` - Owner registration
-
-### Hostels
-
-- `GET /api/hostels` - Get all hostels
-- `GET /api/hostels/:id` - Get hostel by ID
-- `POST /api/hostels` - Create hostel (owner only)
-- `PUT /api/hostels/:id` - Update hostel (owner only)
-- `DELETE /api/hostels/:id` - Delete hostel (owner only)
-
-### User
-
-- `GET /api/dashboard` - Get user data
-- `PUT /api/update-profile` - Update user profile
-
-## 🐛 Known Issues & Solutions
-
-- **Render Free Tier**: Backend may sleep after inactivity (15-30 second cold start)
-- **Image Upload**: Requires Cloudinary configuration for persistent storage
-- **CORS**: Ensure frontend URL is whitelisted in backend
 
 ## 🔮 Future Enhancements
 
