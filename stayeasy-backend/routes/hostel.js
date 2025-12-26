@@ -54,9 +54,15 @@ router.post(
   async (req, res) => {
     try {
       // Get Cloudinary URLs from uploaded files
+      console.log("📸 Files uploaded:", req.files);
       const imageUrls = req.files
-        ? req.files.map((file) => file.path) // Cloudinary returns the URL in 'path'
+        ? req.files.map((file) => {
+            console.log("File path:", file.path);
+            console.log("File object:", file);
+            return file.path;
+          })
         : [];
+      console.log("🖼️ Final image URLs:", imageUrls);
 
       // Convert string numbers to actual numbers
       const hostelData = {
