@@ -1,0 +1,220 @@
+/* Mobile Responsive Fixes for StayEasy */
+
+/* HostelsPage Mobile */
+@media (max-width: 768px) {
+  .content-container {
+    padding: 20px 10px;
+  }
+
+  .content-container h1 {
+    font-size: 1.8rem;
+  }
+
+  .search-bar {
+    width: 95%;
+    max-width: 400px;
+  }
+
+  .hostels-grid {
+    grid-template-columns: 1fr !important;
+    gap: 15px;
+  }
+
+  .logout-button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+/* HostelCard Mobile */
+@media (max-width: 768px) {
+  .hostel-card {
+    max-width: 100%;
+    margin: 10px auto;
+  }
+}
+
+/* HostelDetails Mobile */
+@media (max-width: 768px) {
+  .hostel-details-page {
+    padding: 10px;
+  }
+
+  .hostel-gallery {
+    height: 250px;
+  }
+
+  .hostel-details h1 {
+    font-size: 1.5rem;
+  }
+
+  .hostel-details-content {
+    padding: 15px;
+  }
+}
+
+/* Dashboard Mobile */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 15px;
+  }
+
+  .user-info h1 {
+    font-size: 1.5rem;
+  }
+
+  .user-details {
+    font-size: 14px;
+  }
+
+  .logout-btn,
+  .update-profile-btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+}
+
+/* Forms Mobile (Login, Signup, CreateHostel, EditHostel) */
+@media (max-width: 768px) {
+  .login-page,
+  .signup-page,
+  .create-hostel-page,
+  .edit-hostel-page,
+  .update-profile-page {
+    padding: 10px;
+  }
+
+  .login-container,
+  .signup-container,
+  .create-hostel-container,
+  .edit-hostel-container,
+  .update-profile-container {
+    width: 95%;
+    max-width: 100%;
+    padding: 20px 15px;
+  }
+
+  .login-form input,
+  .signup-form input,
+  .create-hostel-form input,
+  .edit-hostel-form input,
+  .update-profile-form input,
+  .create-hostel-form textarea,
+  .edit-hostel-form textarea {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .login-form button,
+  .signup-form button,
+  .create-hostel-form button,
+  .edit-hostel-form button,
+  .update-profile-form button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  h1, h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Contact Form Mobile */
+@media (max-width: 768px) {
+  .contact form {
+    max-width: 100% !important;
+    padding: 15px;
+  }
+
+  .contact input,
+  .contact textarea {
+    font-size: 14px;
+  }
+}
+
+/* Admin Dashboard Mobile */
+@media (max-width: 768px) {
+  .admin-dashboard {
+    padding: 10px;
+  }
+
+  .admin-stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .admin-tables {
+    overflow-x: auto;
+  }
+
+  table {
+    font-size: 12px;
+  }
+
+  button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+/* Owner Dashboard Mobile */
+@media (max-width: 768px) {
+  .owner-dashboard {
+    padding: 10px;
+  }
+
+  .hostels-list {
+    grid-template-columns: 1fr;
+  }
+
+  .create-hostel-btn {
+    width: 100%;
+  }
+}
+
+/* Booking Page Mobile */
+@media (max-width: 768px) {
+  .booking-container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .booking-form input,
+  .booking-form textarea {
+    font-size: 14px;
+  }
+}
+
+/* General Mobile Fixes */
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 1.3rem !important;
+  }
+
+  h2 {
+    font-size: 1.1rem !important;
+  }
+
+  button {
+    font-size: 13px !important;
+    padding: 8px 12px !important;
+  }
+
+  input, textarea {
+    font-size: 14px !important;
+  }
+
+  .search-bar {
+    width: 100%;
+    height: 42px;
+  }
+
+  .search-bar input {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+}

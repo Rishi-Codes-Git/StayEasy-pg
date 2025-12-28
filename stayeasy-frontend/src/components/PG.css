@@ -223,3 +223,52 @@ body {
         margin-top: 1em;
     }
 }
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .pg-page header .container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .pg-page header .logo {
+        height: 50px;
+        margin-bottom: 10px;
+    }
+
+    .pg-page header nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .pg-page header nav ul li {
+        margin: 0.5em 0;
+    }
+
+    .pg-page .hero h2 {
+        font-size: 2em;
+    }
+
+    .pg-page .hero p {
+        font-size: 1em;
+    }
+
+    .pg-page .about,
+    .pg-page .how-it-works,
+    .pg-page .features,
+    .pg-page .contact {
+        padding: 2em 1em;
+    }
+
+    .pg-page .features-container {
+        flex-direction: column;
+    }
+
+    .pg-page .feature-item {
+        margin-bottom: 2em;
+    }
+
+    .pg-page .contact form {
+        max-width: 100%;
+    }
+}
